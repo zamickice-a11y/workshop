@@ -538,3 +538,21 @@ body:has(#bookingForm) .modal-card{
   height: 320px; /* ปรับได้ */
   display:block;
 }
+/* --- Services slider: prevent IG in-app browser stretching --- */
+.services-slider .slider{
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;   /* ปรับสัดส่วนได้ */
+  max-height: 360px;      /* กันสูงเกิน */
+}
+
+.services-slider img.slide{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
