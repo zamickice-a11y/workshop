@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Booking received • SIAM AUTOWORKS</title>
+  <meta name="description" content="Booking received confirmation." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .wrap{max-width:900px;margin:0 auto;padding:36px 18px}
+    .ok{font-size:44px;line-height:1;margin:0 0 10px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .hint{margin-top:10px;opacity:.88}
+    .mini{font-size:.95rem;line-height:1.5}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      padding:2px 7px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card success" style="padding:18px">
+      <div class="ok">✅</div>
+      <h1 style="margin:0 0 10px">Booking received</h1>
+
+      <p class="muted mini" style="margin:0 0 12px">
+        Thank you! SIAM AUTOWORKS has received your booking request.
+        We will contact you shortly to confirm the time and provide an estimate range.
+      </p>
+
+      <div class="card" style="padding:12px">
+        <div style="font-weight:900;margin-bottom:6px">What happens next</div>
+        <div class="tiny muted">1) We review your details</div>
+        <div class="tiny muted">2) We confirm availability + time</div>
+        <div class="tiny muted">3) We attend on-site (no extra work without approval)</div>
+      </div>
+
+      <p class="tiny muted hint">
+        If it’s urgent, please call or SMS us now.
+      </p>
+
+      <div class="row">
+        <a class="btn btn-primary" href="tel:+61422863397">Call</a>
+        <a class="btn" href="sms:+61422863397?body=Hi%20SIAM%20AUTOWORKS%2C%20I%20just%20submitted%20a%20booking%20request.%20My%20name%20is%20...">SMS</a>
+
+        <!-- Customer clicks to send a quick confirmation email to the business -->
+        <a class="btn btn-ghost" id="emailCopyBtn" href="#">Send confirmation email</a>
+
+        <a class="btn btn-ghost" href="index.html">Back to Home</a>
+      </div>
+
+      <p class="tiny muted" style="margin-top:12px">
+        Tip: Click <span class="kbd">Send confirmation email</span> if you want to ensure we can find your request quickly.
+        (It opens your email app with a ready-to-send message.)
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const BUSINESS_EMAIL = "siamautoworks@gmail.com";
+
+    const btn = document.getElementById("emailCopyBtn");
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const subject = encodeURIComponent("Booking confirmation – submitted via website (SIAM AUTOWORKS)");
+      const body = encodeURIComponent(
+`Hi SIAM AUTOWORKS,
+
+I just submitted a booking request on your website. Please confirm you received it and contact me to confirm the time.
+
+My details:
+- Name:
+- Phone:
+- Vehicle (State + Rego):
+- Location/Suburb:
+- Service requested:
+- Best contact method (SMS/Call/Email):
+
+Thank you.`
+      );
+
+      window.location.href = `mailto:${BUSINESS_EMAIL}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>

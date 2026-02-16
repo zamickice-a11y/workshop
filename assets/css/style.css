@@ -1,0 +1,465 @@
+/* =========================================================
+   SIAM AUTOWORKS — BRIGHT WHITE THEME (clean + premium)
+   ---------------------------------------------------------
+   วิธีปรับสีเอง (ไม่งง):
+   1) ไปที่ SECTION A: COLOR TOKENS
+   2) อยากเปลี่ยนสีส่วนไหน ให้แก้ "ตัวแปร" นั้นตัวเดียว
+   3) ทั้งเว็บจะเปลี่ยนตามทันที
+
+   โครงสร้างไฟล์:
+   A) COLOR TOKENS  = ตั้งค่าสีหลักทั้งหมด (จุดเดียวจบ)
+   B) BASE          = พื้นฐานของเว็บ (พื้นหลัง/ฟอนต์)
+   C) HEADER/NAV    = แถบบน
+   D) BUTTONS       = ปุ่มทั้งหมด
+   E) CARDS/SECTIONS= การ์ด/เซ็คชั่น
+   F) FORMS         = ช่องกรอก (booking)
+   G) MODAL         = popup
+   H) RESPONSIVE    = มือถือ
+   ========================================================= */
+
+
+/* =========================
+   SECTION A: COLOR TOKENS
+   (แก้สีตรงนี้)
+   ========================= */
+:root{
+  /* (A1) พื้นหลังทั้งหน้า (White tone) */
+  --pageBg: #ffffff;          /* สีพื้นหลังหลัก */
+  --pageBgSoft:#fbfcfe;       /* เฉดขาวอ่อนมาก ๆ (ไว้ทำ section-alt) */
+
+  /* (A2) พื้นผิวการ์ด/กล่อง */
+  --surface:#ffffff;          /* สีการ์ด */
+  --surfaceEdge:#f4f6fa;      /* ขอบ/เงาอ่อน ๆ ให้ดูนุ่ม */
+
+  /* (A3) ตัวหนังสือ */
+  --text:#000000;             /* ตัวหนังสือหลัก */
+  --muted:#000000;            /* ตัวหนังสือรอง */
+
+  /* (A4) เส้นขอบ/เงา */
+  --border: rgba(15,23,42,.10);     /* เส้นขอบบาง ๆ */
+  --shadow: 0 18px 44px rgba(2,6,23,.08); /* เงานุ่มแบบ premium */
+
+  /* (A5) สีแบรนด์ (ปุ่มหลัก/ไฮไลท์) */
+  --brand:#6c8ed6;            /* สีน้ำเงินหลัก */
+  --brandHover:#1d4ed8;       /* hover ของปุ่มหลัก */
+  --brandSoft: rgba(37,99,235,.10); /* พื้นหลังอ่อนสำหรับ pill */
+
+  /* (A6) สีสถานะ */
+  --ok:#10b981;
+  --okSoft: rgba(16,185,129,.10);
+
+  --warn:#f59e0b;
+  --warnSoft: rgba(245,158,11,.12);
+
+  /* (A7) ความโค้งมน */
+  --radius:16px;
+}
+
+
+/* =========================
+   SECTION B: BASE
+   สีของ: พื้นหลังเว็บ/ฟอนต์
+   ========================= */
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  background: var(--pageBg);
+  color: var(--text);
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 18px}
+
+
+/* =========================
+   SECTION C: HEADER / NAV
+   สีของ: แถบบน/เมนู
+   ========================= */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background: rgba(255,255,255,.92);     /* สีแถบบน (ขาวใส) */
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+
+/* โลโก้ / ชื่อ */
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;
+  display:grid;place-items:center;
+  background: var(--brand);              /* สี badge/โลโก้ตัวอักษร */
+  color:#fff;font-weight:900;
+  box-shadow: var(--shadow);
+}
+.brand-text strong{display:block;letter-spacing:.3px}
+.brand-text small{display:block;color:var(--muted);margin-top:2px}
+
+.logo{width:40px;height:40px;object-fit:contain;border-radius:12px}
+.brand-name{font-weight:900}
+.brand-sub{opacity:.85;color:var(--muted);font-size:.9rem}
+
+/* เมนู */
+.nav{display:flex;align-items:center;gap:14px}
+.nav a{color:var(--muted);font-weight:650}
+.nav a:hover{color:var(--text)}
+
+/* ปุ่มเปิดเมนูบนมือถือ */
+.nav-toggle{
+  display:none;
+  border:1px solid var(--border);
+  background: #ffffff;
+  color:var(--text);
+  padding:8px 10px;border-radius:12px;
+}
+
+/* เมนูมือถือ */
+.mobile-nav{
+  display:none;
+  flex-direction:column;
+  gap:10px;padding:12px 0;
+  border-top:1px solid var(--border);
+}
+.mobile-nav a{color:var(--muted)}
+.mobile-nav a:hover{color:var(--text)}
+
+
+/* =========================
+   SECTION D: BUTTONS
+   สีของ: ปุ่มทุกตัว
+   ========================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 16px;border-radius:14px;
+  background: var(--brand);              /* สีปุ่มหลัก */
+  border: 1px solid rgba(15,23,42,.06);
+  color:#fff;font-weight:900;
+  box-shadow: var(--shadow);
+  cursor:pointer;
+}
+.btn:hover{background: var(--brandHover)}
+.btn-small{padding:9px 12px;border-radius:12px;font-weight:850}
+.btn-block{width:100%}
+
+/* ปุ่มรอง/โปร่ง (เช่นเมนู Services/Why) */
+.btn-ghost{
+  background: #ffffff;                   /* ขาวล้วน */
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.btn-ghost:hover{
+  background: var(--pageBgSoft);         /* ขาวอ่อน */
+}
+
+/* บางหน้าจะเรียกปุ่มหลักว่า btn-primary */
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brandHover)}
+
+
+/* =========================
+   SECTION E: HERO / SECTIONS / CARDS
+   สีของ: การ์ด, เซ็คชั่น
+   ========================= */
+.hero{padding:44px 0 14px}
+.hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:22px;align-items:start}
+
+/* pill ใน hero */
+.pill{
+  display:inline-flex;gap:10px;align-items:center;
+  padding:8px 12px;border-radius:999px;
+  background: var(--brandSoft);
+  border:1px solid rgba(37,99,235,.14);
+  color: var(--text);
+  font-weight:750;
+}
+
+h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
+.lead{font-size:18px;color:var(--muted);max-width:62ch}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 18px}
+
+/* trust cards */
+.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.trust-card{
+  padding:12px;border-radius:14px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  box-shadow: 0 10px 26px rgba(2,6,23,.06);
+}
+.trust-card small{display:block;color:var(--muted);margin-top:4px}
+
+.contact-strip{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;color:var(--muted)}
+.contact-strip a:hover{color:var(--text)}
+
+.section{padding:46px 0}
+
+/* section-alt = พื้นหลังขาวอ่อนมาก ๆ */
+.section-alt{
+  background: var(--pageBgSoft);
+  border-top:1px solid rgba(15,23,42,.06);
+  border-bottom:1px solid rgba(15,23,42,.06);
+}
+.section-head{margin-bottom:18px}
+.section-head h2{margin:0 0 6px;font-size:30px}
+.section-head p{margin:0;color:var(--muted)}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+/* card หลัก */
+.card{
+  padding:16px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border:1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.card h3{margin:0 0 8px}
+.card p{margin:0 0 10px;color:var(--muted);line-height:1.55}
+
+/* hero card ขวา */
+.hero-card{
+  padding:18px;border-radius: var(--radius);
+  background: #ffffff;
+  border:1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.hero-card h3{margin:0 0 8px}
+.hero-card p{color:var(--muted);margin:0 0 12px}
+
+/* tag สีเขียวอ่อน */
+.tag{
+  display:inline-flex;padding:6px 10px;border-radius:999px;
+  background: var(--okSoft);
+  border:1px solid rgba(16,185,129,.18);
+  color:#064e3b;font-weight:800;font-size:13px;
+}
+
+.pill-grid{display:flex;flex-wrap:wrap;gap:10px}
+.pill2{
+  padding:10px 12px;border-radius:999px;
+  background: var(--pageBgSoft);
+  border:1px solid rgba(15,23,42,.08);
+  color:var(--muted);
+}
+
+
+/* =========================
+   SECTION F: FAQ
+   ========================= */
+.faq details{
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:10px;
+}
+.faq summary{cursor:pointer;font-weight:850}
+.faq p{margin:10px 0 0;color:var(--muted)}
+
+
+/* =========================
+   SECTION G: FOOTER
+   ========================= */
+.footer{
+  padding:26px 0;
+  border-top:1px solid rgba(15,23,42,.08);
+  background: #ffffff;
+}
+.footer-grid{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.footer-links{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+
+
+/* =========================
+   SECTION H: FORMS (Booking)
+   สีของ: input/select/textarea
+   ========================= */
+label{font-weight:850}
+input,select,textarea{
+  width:100%;
+  padding:12px 12px;border-radius:14px;
+  border:1px solid rgba(15,23,42,.14);
+  background:#ffffff;                    /* ขาวล้วน */
+  color:var(--text);
+  outline:none;
+  box-shadow: 0 1px 0 rgba(2,6,23,.03) inset;
+}
+input::placeholder,textarea::placeholder{color: rgba(85,101,126,.70)}
+input:focus,select:focus,textarea:focus{
+  border-color: rgba(37,99,235,.40);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.10);
+}
+
+select{color-scheme:light}
+select option{background:#fff;color:var(--text)}
+
+.inline{display:flex;gap:10px;align-items:center}
+.inline input{flex:1}
+.muted{color:var(--muted)}
+.tiny{font-size:.88rem;line-height:1.35;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.divider{height:1px;background: rgba(15,23,42,.10);margin:14px 0}
+
+/* กล่องเตือน/สำเร็จใน booking */
+.warning{
+  border-color: rgba(245,158,11,.28) !important;
+  background: var(--warnSoft) !important;
+}
+.success{
+  border-color: rgba(16,185,129,.22) !important;
+  background: var(--okSoft) !important;
+}
+
+
+/* =========================
+   SECTION I: MODAL (Popup)
+   ========================= */
+.modal{position:fixed;inset:0;display:none;z-index:9999}
+.modal.show{display:block}
+.modal-backdrop{
+  position:absolute;inset:0;
+  background: rgba(2,6,23,.28);   /* ฉากหลังเข้มเบา ๆ */
+  backdrop-filter: blur(2px);
+}
+.modal-card{
+  position:relative;
+  max-width:520px;
+  margin:12vh auto 0;
+  padding:18px;
+  border-radius:16px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  box-shadow: 0 26px 90px rgba(2,6,23,.20);
+}
+
+
+/* =========================
+   SECTION J: RESPONSIVE
+   ========================= */
+@media (max-width: 860px){
+  .hero-grid{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .nav{display:none}
+  .nav-toggle{display:inline-flex}
+}
+/* =========================================================
+   FORCE OVERRIDE: booking.html inline <style>
+   - ไม่ต้องแก้ booking.html
+   - ชนะด้วย !important + scope เฉพาะหน้าที่มี #bookingForm
+   ========================================================= */
+
+/* SCOPE: หน้าไหนมี #bookingForm ถือว่าเป็นหน้า booking */
+body:has(#bookingForm){
+  background: #ffffff !important;
+  color: #0b1220 !important;
+}
+
+/* Background + text ของทั้งหน้า booking */
+body:has(#bookingForm) html,
+body:has(#bookingForm) body{
+  background: #ffffff !important;
+  color: #0b1220 !important;
+}
+
+/* Card ในหน้า booking */
+body:has(#bookingForm) .card{
+  background: #ffffff !important;
+  border: 1px solid rgba(15,23,42,.10) !important;
+  box-shadow: 0 18px 44px rgba(2,6,23,.08) !important;
+  border-radius: 16px !important;
+}
+
+/* ตัวหนังสือรอง */
+body:has(#bookingForm) .muted,
+body:has(#bookingForm) .tiny{
+  color: rgba(85,101,126,.90) !important;
+  opacity: 1 !important;
+}
+
+/* Divider */
+body:has(#bookingForm) .divider{
+  background: rgba(15,23,42,.10) !important;
+}
+
+/* Inputs */
+body:has(#bookingForm) input,
+body:has(#bookingForm) select,
+body:has(#bookingForm) textarea{
+  background: #ffffff !important;
+  color: #0b1220 !important;
+  border: 1px solid rgba(15,23,42,.14) !important;
+  box-shadow: 0 1px 0 rgba(2,6,23,.03) inset !important;
+  border-radius: 14px !important;
+}
+body:has(#bookingForm) input::placeholder,
+body:has(#bookingForm) textarea::placeholder{
+  color: rgba(85,101,126,.70) !important;
+}
+body:has(#bookingForm) input:focus,
+body:has(#bookingForm) select:focus,
+body:has(#bookingForm) textarea:focus{
+  border-color: rgba(37,99,235,.40) !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.10) !important;
+}
+
+/* Dropdown readability */
+body:has(#bookingForm) select{ color-scheme: light !important; }
+body:has(#bookingForm) select option{
+  background: #ffffff !important;
+  color: #0b1220 !important;
+}
+
+/* Buttons (ทำให้ไม่รุ้ง + โทนขาวสะอาด) */
+body:has(#bookingForm) .btn{
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(15,23,42,.06) !important;
+  box-shadow: 0 18px 44px rgba(2,6,23,.08) !important;
+}
+body:has(#bookingForm) .btn:hover{
+  background: #1d4ed8 !important;
+  filter: none !important;
+}
+
+/* ปุ่มรอง */
+body:has(#bookingForm) .btn-ghost{
+  background: #ffffff !important;
+  color: #0b1220 !important;
+  border: 1px solid rgba(15,23,42,.10) !important;
+  box-shadow: none !important;
+}
+body:has(#bookingForm) .btn-ghost:hover{
+  background: #fbfcfe !important;
+}
+
+/* ปุ่ม primary ในหน้า booking */
+body:has(#bookingForm) .btn-primary{
+  background: #6c8ed6 !important;
+  color:#ffffff !important;
+  border: 1px solid rgba(15,23,42,.06) !important;
+}
+body:has(#bookingForm) .btn-primary:hover{
+  background:#1d4ed8 !important;
+}
+
+/* กล่องเตือน/สำเร็จ */
+body:has(#bookingForm) .warning{
+  border-color: rgba(245,158,11,.28) !important;
+  background: rgba(245,158,11,.12) !important;
+}
+body:has(#bookingForm) .success{
+  border-color: rgba(16,185,129,.22) !important;
+  background: rgba(16,185,129,.10) !important;
+}
+
+/* Modal */
+body:has(#bookingForm) .modal-backdrop{
+  background: rgba(2,6,23,.28) !important;
+}
+body:has(#bookingForm) .modal-card{
+  background: #ffffff !important;
+  border: 1px solid rgba(15,23,42,.10) !important;
+  box-shadow: 0 26px 90px rgba(2,6,23,.20) !important;
+}
