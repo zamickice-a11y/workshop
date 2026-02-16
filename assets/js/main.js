@@ -124,3 +124,48 @@
     initRegoCheck();
   });
 })();
+// ===== Services slider (2s / image loop) =====
+(function () {
+  const slider = document.getElementById("servicesSlider");
+  if (!slider) return;
+
+  const slides = Array.from(slider.querySelectorAll(".slide"));
+  if (slides.length <= 1) return;
+
+  const dotsWrap = slider.querySelector(".dots");
+  let dots = [];
+
+  // build dots
+  if (dotsWrap) {
+    dotsWrap.innerHTML = "";
+    dots = slides.map((_, i) => {
+      const b = document.createElement("span");
+      b.className = "dot" + (i === 0 ? " active" : "");
+      dotsWrap.appendChild(b);
+      return b;
+    });
+  }
+
+  let idx = 0;
+  const INTERVAL = 2000; // 2 seconds
+
+  function show(i) {
+    slides[idx].classList.remove("active");
+    if (dots[idx]) dots[idx].classList.remove("active");
+
+    idx = i;
+
+    slides[idx].classList.add("active");
+    if (dots[idx]) dots[idx].classList.add("active");
+  }
+
+  let timer = setInterval(() => {
+    show((idx + 1) % slides.length);
+  }, INTERVAL);
+
+  // pause on hover (desktop)
+  slider.addEventListener("mouseenter", () => clearInterval(timer));
+  slider.addEventListener("mouseleave", () => {
+    timer = setInterval(() => show((idx + 1) % slides.length), INTERVAL);
+  });
+})();
