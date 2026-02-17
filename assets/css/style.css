@@ -352,21 +352,21 @@ select option{background:#fff;color:var(--text)}
 
 /* SCOPE: หน้าไหนมี #bookingForm ถือว่าเป็นหน้า booking */
 body:has(#bookingForm){
-  background: #ffffff !important;
-  color: #0b1220 !important;
+  background: #181717 !important;
+  color: #fdfcf2 !important;
 }
 
 /* Background + text ของทั้งหน้า booking */
 body:has(#bookingForm) html,
 body:has(#bookingForm) body{
-  background: #ffffff !important;
-  color: #0b1220 !important;
+  background: #181717 !important;
+  color: #fdfcf2 !important;
 }
 
 /* Card ในหน้า booking */
 body:has(#bookingForm) .card{
-  background: #ffffff !important;
-  border: 1px solid rgba(15,23,42,.10) !important;
+  background: #1f1f1f !important;
+  border: 1px solid #fdfcf2 !important;
   box-shadow: 0 18px 44px rgba(2,6,23,.08) !important;
   border-radius: 16px !important;
 }
@@ -374,7 +374,7 @@ body:has(#bookingForm) .card{
 /* ตัวหนังสือรอง */
 body:has(#bookingForm) .muted,
 body:has(#bookingForm) .tiny{
-  color: rgba(85,101,126,.90) !important;
+  color: #fdfcf2 !important;
   opacity: 1 !important;
 }
 
@@ -389,7 +389,7 @@ body:has(#bookingForm) select,
 body:has(#bookingForm) textarea{
   background: #ffffff !important;
   color: #0b1220 !important;
-  border: 1px solid rgba(15,23,42,.14) !important;
+  border: 1px solid rgba(14, 13, 13, 0.92) !important;
   box-shadow: 0 1px 0 rgba(2,6,23,.03) inset !important;
   border-radius: 14px !important;
 }
@@ -400,7 +400,7 @@ body:has(#bookingForm) textarea::placeholder{
 body:has(#bookingForm) input:focus,
 body:has(#bookingForm) select:focus,
 body:has(#bookingForm) textarea:focus{
-  border-color: rgba(37,99,235,.40) !important;
+  border-color: rgba(14, 13, 13, 0.92) !important;
   box-shadow: 0 0 0 4px rgba(37,99,235,.10) !important;
 }
 
@@ -436,7 +436,7 @@ body:has(#bookingForm) .btn-ghost:hover{
 
 /* ปุ่ม primary ในหน้า booking */
 body:has(#bookingForm) .btn-primary{
-  background: #6c8ed6 !important;
+  background: #ff5e00 !important;
   color:#ffffff !important;
   border: 1px solid rgba(15,23,42,.06) !important;
 }
@@ -554,7 +554,7 @@ body:has(#bookingForm) .modal-card{
   background-position: center;
   background-repeat: no-repeat;
 
-  opacity: 0.16;          /* ปรับความจางตรงนี้ (0.06 - 0.18 กำลังสวย) */
+  opacity: 0.14;          /* ปรับความจางตรงนี้ (0.06 - 0.18 กำลังสวย) */
   transform: scale(1.05); /* กันเห็นขอบ */
   z-index: 0;
 }
@@ -573,4 +573,37 @@ body:has(#bookingForm) .modal-card{
   position: relative;
   z-index: 1;
 }
+/* ===== BOOKING PAGE FORCE (use body.booking) ===== */
+body.booking{
+  background: #181717;
+  color: #fdfcf2;
+}
 
+body.booking .card{
+  background:#1f1f1f;
+  border:1px solid rgba(15,23,42,.10);
+  box-shadow: 0 18px 44px rgba(2,6,23,.08);
+  border-radius:16px;
+}
+
+body.booking input,
+body.booking select,
+body.booking textarea{
+  background:#ffffff;
+  color:#0b1220;
+  border:1px solid rgba(15,23,42,.14);
+  border-radius:14px;
+}
+
+body.booking .btn{
+  background:#ff5e00;
+  color:#fff;
+}
+body.booking .btn:hover{
+  background:#e55400;
+}
+body.booking .btn-ghost{
+  background:#1f1f1f;
+  color:#fdfcf2;
+  border:1px solid rgba(255,255,255,.12);
+}
