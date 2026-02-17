@@ -238,7 +238,7 @@ h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
 .pill-grid{display:flex;flex-wrap:wrap;gap:10px}
 .pill2{
   padding:10px 12px;border-radius:999px;
-  background: var(--pageBgSoft);
+  background: #1f1f1f;
   border:1px solid rgba(15,23,42,.08);
   color:var(--muted);
 }
@@ -607,5 +607,6 @@ body.booking .btn-ghost{
   color:#fdfcf2;
   border:1px solid rgba(255,255,255,.12);
 }
+
 
 
