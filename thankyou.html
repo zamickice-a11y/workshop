@@ -5,50 +5,151 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Booking received • SIAM AUTOWORKS</title>
   <meta name="description" content="Booking received confirmation." />
-  <link rel="stylesheet" href="assets/css/style.css" />
+
   <style>
-    .wrap{max-width:900px;margin:0 auto;padding:36px 18px}
+    /* ===== THANKYOU PAGE — same vibe as Booking (dark clean) ===== */
+    :root{
+      --bg:#181717;
+      --card:#1f1f1f;
+      --text:#fdfcf2;
+      --muted:rgba(253,252,242,.88);
+      --border:rgba(255,255,255,.10);
+      --shadow:0 18px 44px rgba(2,6,23,.08);
+      --btn:#1f1f1f;
+      --btnHover:#252525;
+      --btnPrimary:#fdfcf2;
+      --btnPrimaryText:#181717;
+      --orange:#ff5e00;
+--orangeHover:#e55400;
+
+    }
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+    }
+
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+      padding:36px 18px;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+    }
+
+    .card{
+      width:100%;
+      border-radius:16px;
+      padding:18px;
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
     .ok{font-size:44px;line-height:1;margin:0 0 10px}
+    h1{margin:0 0 10px}
+
+    .mini{font-size:.95rem;line-height:1.55;color:var(--muted);margin:0 0 12px}
+    .tiny{font-size:.88rem;line-height:1.35;color:var(--muted)}
+    .hint{margin-top:10px}
+
+    .inner-box{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+    }
+
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .hint{margin-top:10px;opacity:.88}
-    .mini{font-size:.95rem;line-height:1.5}
-    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      padding:2px 7px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+
+ .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 14px;
+  border-radius:14px;
+  font-weight:900;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.12);
+  background:var(--btn);
+  color:var(--text);
+}
+.btn:hover{background:var(--btnHover)}
+
+/* ORANGE BUTTONS (Call / SMS) */
+.btn-orange{
+  background: var(--orange);
+  border-color: rgba(255,94,0,.35);
+  color:#ffffff;
+}
+.btn-orange:hover{
+  background: var(--orangeHover);
+}
+
+.btn-primary{
+  background:var(--btnPrimary);
+  color:var(--btnPrimaryText);
+  border:1px solid rgba(255,255,255,.18);
+}
+.btn-primary:hover{background:#fff}
+
+.btn-ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.14);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+
+    .btn-ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      padding:2px 7px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      display:inline-block;
+    }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card success" style="padding:18px">
-      <div class="ok">✅</div>
-      <h1 style="margin:0 0 10px">Booking received</h1>
 
-      <p class="muted mini" style="margin:0 0 12px">
+<body class="thankyou">
+  <div class="wrap">
+    <div class="card">
+      <h1>Booking received</h1>
+
+      <p class="mini">
         Thank you! SIAM AUTOWORKS has received your booking request.
         We will contact you shortly to confirm the time and provide an estimate range.
       </p>
 
-      <div class="card" style="padding:12px">
+      <div class="inner-box">
         <div style="font-weight:900;margin-bottom:6px">What happens next</div>
-        <div class="tiny muted">1) We review your details</div>
-        <div class="tiny muted">2) We confirm availability + time</div>
-        <div class="tiny muted">3) We attend on-site (no extra work without approval)</div>
+        <div class="tiny">1) We review your details</div>
+        <div class="tiny">2) We confirm availability + time</div>
+        <div class="tiny">3) We attend on-site (no extra work without approval)</div>
       </div>
 
-      <p class="tiny muted hint">
-        If it’s urgent, please call or SMS us now.
-      </p>
+      <p class="tiny hint">If it’s urgent, please call or SMS us now.</p>
 
       <div class="row">
-        <a class="btn btn-primary" href="tel:+61422863397">Call</a>
-        <a class="btn" href="sms:+61422863397?body=Hi%20SIAM%20AUTOWORKS%2C%20I%20just%20submitted%20a%20booking%20request.%20My%20name%20is%20...">SMS</a>
-
-        <!-- Customer clicks to send a quick confirmation email to the business -->
+       <a class="btn btn-orange" href="tel:0422863397">Call</a>
+<a class="btn btn-orange" href="sms:0422863397?body=Hi%20SIAM%20AUTOWORKS%2C%20I%20just%20submitted%20a%20booking%20request.%20My%20name%20is%20...">SMS</a>
         <a class="btn btn-ghost" id="emailCopyBtn" href="#">Send confirmation email</a>
-
         <a class="btn btn-ghost" href="index.html">Back to Home</a>
       </div>
 
-      <p class="tiny muted" style="margin-top:12px">
+      <p class="tiny" style="margin-top:12px">
         Tip: Click <span class="kbd">Send confirmation email</span> if you want to ensure we can find your request quickly.
         (It opens your email app with a ready-to-send message.)
       </p>
@@ -57,8 +158,8 @@
 
   <script>
     const BUSINESS_EMAIL = "siamautoworks@gmail.com";
-
     const btn = document.getElementById("emailCopyBtn");
+
     btn.addEventListener("click", (e) => {
       e.preventDefault();
 
