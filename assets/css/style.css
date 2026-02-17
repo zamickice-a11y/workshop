@@ -607,6 +607,13 @@ body.booking .btn-ghost{
   color:#fdfcf2;
   border:1px solid rgba(255,255,255,.12);
 }
+/* Make mobile/tablet look more like desktop (larger screens) */
+@media (min-width: 640px) and (max-width: 860px){
+  .hero-grid{grid-template-columns: 1.2fr .8fr}
+  .grid-2{grid-template-columns: 1fr 1fr}
+  .grid-3{grid-template-columns: repeat(3, 1fr)}
+}
+
 
 
 
