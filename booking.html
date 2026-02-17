@@ -2,45 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Book a service | SIAM AUTOWORKS</title>
   <meta name="description" content="Book a mobile mechanic service in Adelaide. Fast quote, clear times, professional reporting." />
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
-    /* Small helpers (safe even if you already have styles) */
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .card{border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03)}
-    .grid{display:grid;gap:14px}
-    .grid-2{grid-template-columns:1fr}
-    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
-    label{display:block;margin:0 0 6px;font-weight:700}
-    input,select,textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.18);color:inherit}
-    textarea{min-height:110px;resize:vertical}
-    .inline{display:flex;gap:10px;align-items:center}
-    .inline input{flex:1}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:inherit;cursor:pointer;text-decoration:none;font-weight:800}
-    .btn:hover{background:rgba(255,255,255,.12)}
-    .btn-primary{background:rgba(80,200,120,.25);border-color:rgba(80,200,120,.35)}
-    .btn-primary:hover{background:rgba(80,200,120,.35)}
-    .btn-ghost{background:transparent}
-    .muted{opacity:.78}
-    .tiny{font-size:.88rem;line-height:1.35}
-    .section-title{margin:0 0 10px}
-    .row{display:flex;gap:10px;flex-wrap:wrap}
-    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);font-size:.9rem}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
-    .brand{display:flex;gap:10px;align-items:center}
-    .brand-badge{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);font-weight:900}
-    .nav{display:flex;gap:10px;flex-wrap:wrap}
-    .form-row{margin-bottom:14px}
-    .divider{height:1px;background:rgba(255,255,255,.10);margin:14px 0}
-    .success{border-color:rgba(80,200,120,.35);background:rgba(80,200,120,.10)}
-    .warning{border-color:rgba(255,200,80,.35);background:rgba(255,200,80,.08)}
-  </style>
+  /* Booking page helpers — match main theme (dark + orange) */
+
+  .container{max-width:1100px;margin:0 auto;padding:24px}
+
+  .grid{display:grid;gap:14px}
+  .grid-2{grid-template-columns:1fr}
+  @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
+
+  .card{
+    border-radius:16px;
+    padding:18px;
+    background:#1f1f1f;
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow: 0 18px 44px rgba(0,0,0,.25);
+  }
+
+  label{display:block;margin:0 0 6px;font-weight:850;color:#fdfcf2}
+
+  input,select,textarea{
+    width:100%;
+    padding:12px 12px;
+    border-radius:14px;
+    border:1px solid rgba(14, 13, 13, 0.92);
+    background:#121212;
+    color:#fdfcf2;
+    outline:none;
+    box-shadow:none;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(253,252,242,.55)}
+  textarea{min-height:110px;resize:vertical}
+
+  input:focus,select:focus,textarea:focus{
+    border-color:rgba(255,94,0,.65);
+    box-shadow: 0 0 0 4px rgba(255,94,0,.18);
+  }
+
+  /* Dropdown readability */
+  select{color-scheme:dark}
+  select option{background:#121212;color:#fdfcf2}
+
+  .inline{display:flex;gap:10px;align-items:center}
+  .inline input{flex:1}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 14px;border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:#ff5e00;
+    color:#fff;
+    cursor:pointer;text-decoration:none;font-weight:900;
+    box-shadow: 0 18px 44px rgba(0,0,0,.25);
+  }
+  .btn:hover{background:#ff7a2a}
+
+  /* Primary button = same as brand */
+  .btn-primary{
+    background:#ff5e00;
+    border-color:rgba(14, 13, 13, 0.92);
+  }
+  .btn-primary:hover{background:#ff7a2a}
+
+  /* Secondary/ghost button */
+  .btn-ghost{
+    background:#1f1f1f;
+    color:#fdfcf2;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{background:#2a2a2a}
+
+  .muted{opacity:1;color:rgba(253,252,242,.85)}
+  .tiny{font-size:.88rem;line-height:1.35}
+  .section-title{margin:0 0 10px;color:#fdfcf2}
+
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+
+  .pill{
+    padding:6px 10px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,94,0,.12);
+    font-size:.9rem;
+    color:#fdfcf2;
+  }
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+  .brand{display:flex;gap:10px;align-items:center}
+  .brand-badge{
+    width:34px;height:34px;border-radius:10px;
+    display:grid;place-items:center;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.06);
+    font-weight:900;color:#fdfcf2
+  }
+  .nav{display:flex;gap:10px;flex-wrap:wrap}
+
+  .form-row{margin-bottom:14px}
+  .divider{height:1px;background:rgba(255,255,255,.10);margin:14px 0}
+
+  /* Status cards */
+  .success{border-color:rgba(16,185,129,.35)!important;background:rgba(16,185,129,.10)!important}
+  .warning{border-color:rgba(245,158,11,.35)!important;background:rgba(245,158,11,.10)!important}
+</style>
+
 </head>
 
-<body>
+<body class="booking">
   <div class="container">
     <div class="topbar">
       <div class="brand">
@@ -68,7 +141,7 @@
 
         <div class="divider"></div>
 
-        <!-- ✅ 100% submission via Formspree -->
+        <!--  100% submission via Formspree -->
         <form id="bookingForm"
               action="https://formspree.io/f/mdalzojj"
               method="POST">
@@ -223,7 +296,7 @@
           </div>
 
           <p class="tiny muted" style="margin-top:10px">
-            After you submit, We will contact you as soon as possible.
+            After you submit, you will be redirected to a confirmation page (Booking received).
           </p>
         </form>
       </div>
@@ -258,7 +331,7 @@
 
         <h2 class="section-title">Tip</h2>
         <p class="tiny muted">
-          Put VIN help confirm the correct vehicle.
+          Put photos/logos into <code>assets/img</code> and add them later for trust (your van, tools, before/after).
         </p>
       </div>
     </div>
@@ -338,6 +411,3 @@
 </script>
 </body>
 </html>
-
-
-
