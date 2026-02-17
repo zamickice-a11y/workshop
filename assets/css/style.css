@@ -554,7 +554,7 @@ body:has(#bookingForm) .modal-card{
   background-position: center;
   background-repeat: no-repeat;
 
-  opacity: 0.14;          /* ปรับความจางตรงนี้ (0.06 - 0.18 กำลังสวย) */
+  opacity: 0.16;          /* ปรับความจางตรงนี้ (0.06 - 0.18 กำลังสวย) */
   transform: scale(1.05); /* กันเห็นขอบ */
   z-index: 0;
 }
@@ -573,3 +573,4 @@ body:has(#bookingForm) .modal-card{
   position: relative;
   z-index: 1;
 }
+
