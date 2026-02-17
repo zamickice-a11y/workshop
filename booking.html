@@ -127,7 +127,7 @@
       <div class="nav">
         <a class="btn btn-ghost" href="index.html#services">Services</a>
         <a class="btn btn-ghost" href="index.html#why">Why us</a>
-        <a class="btn btn-primary" href="index.html#about">About us</a>
+        <a class="btn btn-primary" href="booking.html">Book</a>
       </div>
     </div>
 
@@ -149,7 +149,8 @@
           <!-- Formspree helpers -->
           <input type="hidden" name="_subject" value="New Booking - SIAM AUTOWORKS" />
           <input type="hidden" name="_template" value="table" />
-        
+        <input type="hidden" name="_redirect" value="https://siamautoworks.com.au/thankyou.html" />
+
           <!-- Honeypot (spam trap) -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -296,7 +297,7 @@
           </div>
 
           <p class="tiny muted" style="margin-top:10px">
-            After you submit, We will contact you back as soon as possible.
+            After you submit, you will be redirected to a confirmation page (Booking received).
           </p>
         </form>
       </div>
@@ -331,7 +332,7 @@
 
         <h2 class="section-title">Tip</h2>
         <p class="tiny muted">
-          Providing a VIN helps us verify vehicle information and procure parts more accurately.
+          Put photos/logos into <code>assets/img</code> and add them later for trust (your van, tools, before/after).
         </p>
       </div>
     </div>
@@ -365,28 +366,7 @@
 </div>
 <script>
   const form = document.getElementById("bookingForm");
-  const modal = document.getElementById("successModal");
-  const closeBtn = document.getElementById("closeModalBtn");
-  const newBtn = document.getElementById("newBookingBtn");
 
-  function openModal(){
-    modal.classList.add("show");
-    modal.setAttribute("aria-hidden","false");
-  }
-  function closeModal(){
-    modal.classList.remove("show");
-    modal.setAttribute("aria-hidden","true");
-  }
-
-  closeBtn?.addEventListener("click", closeModal);
-  newBtn?.addEventListener("click", () => { closeModal(); form.reset(); });
-
-  // close when clicking backdrop
-  modal?.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal-backdrop")) closeModal();
-  });
-
-  // submit via fetch -> stay on same page
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -400,7 +380,7 @@
       });
 
       if (res.ok) {
-        openModal();
+        window.location.href = "thankyou.html";
       } else {
         alert("Submit failed. Please try again.");
       }
@@ -409,7 +389,6 @@
     }
   });
 </script>
+
 </body>
 </html>
-
-
