@@ -24,29 +24,29 @@
    ========================= */
 :root{
   /* (A1) พื้นหลังทั้งหน้า (White tone) */
-  --pageBg: #ffffff;          /* สีพื้นหลังหลัก */
-  --pageBgSoft:#fbfcfe;       /* เฉดขาวอ่อนมาก ๆ (ไว้ทำ section-alt) */
+  --pageBg: #181717;          /* สีพื้นหลังหลัก */
+  --pageBgSoft:#181717;       /* เฉดขาวอ่อนมาก ๆ (ไว้ทำ section-alt) */
 
   /* (A2) พื้นผิวการ์ด/กล่อง */
-  --surface:#ffffff;          /* สีการ์ด */
-  --surfaceEdge:#f4f6fa;      /* ขอบ/เงาอ่อน ๆ ให้ดูนุ่ม */
+  --surface:#1f1f1f;          /* สีการ์ด */
+  --surfaceEdge:#1f1f1f;      /* ขอบ/เงาอ่อน ๆ ให้ดูนุ่ม */
 
   /* (A3) ตัวหนังสือ */
-  --text:#000000;             /* ตัวหนังสือหลัก */
-  --muted:#000000;            /* ตัวหนังสือรอง */
+  --text:#fdfcf2;             /* ตัวหนังสือหลัก */
+  --muted:#fdfcf2;            /* ตัวหนังสือรอง */
 
   /* (A4) เส้นขอบ/เงา */
   --border: rgba(15,23,42,.10);     /* เส้นขอบบาง ๆ */
   --shadow: 0 18px 44px rgba(2,6,23,.08); /* เงานุ่มแบบ premium */
 
   /* (A5) สีแบรนด์ (ปุ่มหลัก/ไฮไลท์) */
-  --brand:#6c8ed6;            /* สีน้ำเงินหลัก */
+  --brand:#ff5e00;            /* สีน้ำเงินหลัก */
   --brandHover:#1d4ed8;       /* hover ของปุ่มหลัก */
   --brandSoft: rgba(37,99,235,.10); /* พื้นหลังอ่อนสำหรับ pill */
 
   /* (A6) สีสถานะ */
   --ok:#10b981;
-  --okSoft: rgba(16,185,129,.10);
+  --okSoft: rgba(37,99,235,.10);
 
   --warn:#f59e0b;
   --warnSoft: rgba(245,158,11,.12);
@@ -77,7 +77,7 @@ a{color:inherit;text-decoration:none}
    ========================= */
 .site-header{
   position:sticky;top:0;z-index:50;
-  background: rgba(255,255,255,.92);     /* สีแถบบน (ขาวใส) */
+  background: rgba(14, 13, 13, 0.92);     /* สีแถบบน (ขาวใส) */
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(10px);
 }
@@ -108,7 +108,7 @@ a{color:inherit;text-decoration:none}
 .nav-toggle{
   display:none;
   border:1px solid var(--border);
-  background: #ffffff;
+  background: #1f1f1f;
   color:var(--text);
   padding:8px 10px;border-radius:12px;
 }
@@ -143,7 +143,7 @@ a{color:inherit;text-decoration:none}
 
 /* ปุ่มรอง/โปร่ง (เช่นเมนู Services/Why) */
 .btn-ghost{
-  background: #ffffff;                   /* ขาวล้วน */
+  background: #1f1f1f;                   /* ขาวล้วน */
   color: var(--text);
   border: 1px solid var(--border);
   box-shadow: none;
@@ -182,7 +182,7 @@ h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
 .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 .trust-card{
   padding:12px;border-radius:14px;
-  background:#ffffff;
+  background:#1f1f1f;
   border:1px solid var(--border);
   box-shadow: 0 10px 26px rgba(2,6,23,.06);
 }
@@ -220,7 +220,7 @@ h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
 /* hero card ขวา */
 .hero-card{
   padding:18px;border-radius: var(--radius);
-  background: #ffffff;
+  background: #1f1f1f;
   border:1px solid var(--border);
   box-shadow: var(--shadow);
 }
@@ -248,7 +248,7 @@ h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
    SECTION F: FAQ
    ========================= */
 .faq details{
-  background:#ffffff;
+  background:#1f1f1f;
   border:1px solid var(--border);
   border-radius:14px;
   padding:12px 14px;
@@ -264,7 +264,7 @@ h1{font-size:44px;line-height:1.06;margin:14px 0 12px}
 .footer{
   padding:26px 0;
   border-top:1px solid rgba(15,23,42,.08);
-  background: #ffffff;
+  background: rgba(14, 13, 13, 0.92);
 }
 .footer-grid{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .footer-links{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted)}
@@ -538,21 +538,38 @@ body:has(#bookingForm) .modal-card{
   height: 320px; /* ปรับได้ */
   display:block;
 }
-/* --- Services slider: prevent IG in-app browser stretching --- */
-.services-slider .slider{
+/* HERO faint background image (uses slide5.jpg) */
+.hero{
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
-  aspect-ratio: 16 / 9;   /* ปรับสัดส่วนได้ */
-  max-height: 360px;      /* กันสูงเกิน */
 }
 
-.services-slider img.slide{
+/* ภาพพื้นหลังจางๆ */
+.hero::before{
+  content: "";
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  background-image: url("../img/slide5.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.14;          /* ปรับความจางตรงนี้ (0.06 - 0.18 กำลังสวย) */
+  transform: scale(1.05); /* กันเห็นขอบ */
+  z-index: 0;
 }
 
+/* ฟิล์มทับนิดนึงเพื่อให้อ่านง่าย (ถ้าอยากเข้ม/อ่อน ปรับ opacity) */
+.hero::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 0;
+}
+
+/* ทำให้ “เนื้อหา” อยู่เหนือพื้นหลัง */
+.hero > .container{
+  position: relative;
+  z-index: 1;
+}
