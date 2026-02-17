@@ -613,6 +613,9 @@ body.booking .btn-ghost{
   .grid-2{grid-template-columns: 1fr 1fr}
   .grid-3{grid-template-columns: repeat(3, 1fr)}
 }
+/* Mobile menu open state */
+.mobile-nav.open{ display:flex; }
+
 
 
 
