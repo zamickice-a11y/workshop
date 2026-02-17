@@ -615,6 +615,166 @@ body.booking .btn-ghost{
 }
 /* Mobile menu open state */
 .mobile-nav.open{ display:flex; }
+/* =========================================
+   BOOKING PAGE — MOBILE POLISH (IG browser friendly)
+   ใช้กับ <body class="booking">
+   วางท้ายไฟล์ style.css
+========================================= */
+
+body.booking .container{
+  max-width: 980px;
+  padding: 18px !important;
+}
+
+/* topbar จัดให้ดูเป็นเว็บจริง ไม่โป่ง */
+body.booking .topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+/* โลโก้ + ชื่อ */
+body.booking .brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  min-width: 0;
+}
+body.booking .brand .logo{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  object-fit:contain;
+}
+body.booking .brand > div{
+  min-width:0;
+}
+body.booking .brand > div > div:first-child{
+  font-size:14px;
+  letter-spacing:.2px;
+  line-height:1.1;
+}
+body.booking .brand .muted{
+  font-size:12px;
+  opacity:.85;
+}
+
+/* ปุ่มเมนูด้านบนให้ดู minimal premium */
+body.booking .nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+body.booking .nav .btn{
+  padding:10px 12px !important;
+  border-radius:999px !important;
+  font-weight:900;
+  box-shadow:none !important;
+}
+body.booking .nav .btn-ghost{
+  background:#1f1f1f !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+}
+body.booking .nav .btn-primary{
+  background:#ff5e00 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+}
+
+/* การ์ดหลักให้ดูแพงขึ้น */
+body.booking .card{
+  background:#1f1f1f;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  box-shadow: 0 18px 46px rgba(0,0,0,.28);
+}
+
+/* หัวข้อใหญ่บนมือถือ อย่าให้ใหญ่เกิน */
+body.booking h1.section-title{
+  font-size:34px;
+  line-height:1.05;
+  margin: 0 0 8px;
+}
+body.booking h2.section-title{
+  font-size:18px;
+  margin: 0 0 10px;
+}
+
+/* ช่องกรอกให้ดูสม่ำเสมอ */
+body.booking label{
+  font-weight:900;
+  font-size:14px;
+}
+body.booking input,
+body.booking select,
+body.booking textarea{
+  border-radius:14px;
+  padding:12px 14px;
+  border:1px solid rgba(15,23,42,.14);
+  background:#fff;
+  color:#0b1220;
+}
+
+/* ปุ่ม submit ให้เต็มสวยๆ */
+body.booking .row{
+  gap:10px;
+}
+body.booking .row .btn{
+  border-radius:14px !important;
+  padding:13px 14px !important;
+  font-weight:900;
+}
+body.booking .row .btn-primary{
+  background:#ff5e00 !important;
+}
+body.booking .row .btn-ghost{
+  background:#1f1f1f !important;
+  color:#fdfcf2 !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+}
+
+/* กั้นเส้นให้เบาลง */
+body.booking .divider{
+  background: rgba(255,255,255,.08) !important;
+}
+
+/* ===== MOBILE LAYOUT: ให้เหมือน desktop มากขึ้น ===== */
+@media (max-width: 900px){
+  /* ให้ topbar เรียงเป็น 2 แถวสวยๆ ไม่เบียดกัน */
+  body.booking .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  body.booking .nav{
+    width:100%;
+    gap:10px;
+  }
+  body.booking .nav .btn{
+    flex:1;
+    text-align:center;
+  }
+
+  /* ลด padding การ์ดนิด ให้โล่งพอดี */
+  body.booking .card{
+    padding:16px !important;
+  }
+
+  /* ตัวหนังสือรอง */
+  body.booking .tiny{
+    font-size:.9rem;
+    line-height:1.45;
+  }
+}
+
+/* กัน IG browser ซูม/ขอบ safe area แปลกๆ */
+@supports (padding: max(0px)) {
+  body.booking .container{
+    padding-left: max(18px, env(safe-area-inset-left)) !important;
+    padding-right: max(18px, env(safe-area-inset-right)) !important;
+  }
+}
+
 
 
 
