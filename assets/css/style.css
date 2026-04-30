@@ -774,7 +774,8 @@ body.booking .divider{
     padding-right: max(18px, env(safe-area-inset-right)) !important;
   }
 }
-
+/* mobile menu open state */
+.mobile-nav.open{ display:flex; }
 
 
 
