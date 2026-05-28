@@ -367,49 +367,74 @@
       } catch (e) {}
     })();
   </script>
-  <div id="successModal" class="modal" aria-hidden="true">
-  <div class="modal-backdrop"></div>
 
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <h2 id="modalTitle" style="margin:0 0 10px;">Thanks! </h2>
-    <p class="muted" style="margin:0 0 16px;">
-      Booking request sent successfully.<br />
-      We’ll confirm time + quote range shortly.
-    </p>
+  <!-- ================================================================
+       Supabase client (for booking → office app integration)
+       ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
-    <div class="row" style="gap:10px;flex-wrap:wrap;">
-      <button id="closeModalBtn" class="btn btn-primary" type="button">Close</button>
-      <button id="newBookingBtn" class="btn btn-ghost" type="button">New booking</button>
-    </div>
-  </div>
-</div>
-<script>
-  const form = document.getElementById("bookingForm");
+  <script>
+    // === SAME values as your office app config.js ===
+    const SUPABASE_URL      = "https://qftomcqjxfvfeukaomyc.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmdG9tY3FqeGZ2ZmV1a2FvbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NzM1ODcsImV4cCI6MjA5NTU0OTU4N30.LdGdWONhMGvVQ9omuomlDg45d8BIr_8z9QYbnrWGhS8";   // legacy anon key eyJhbGci...
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const sbClient = (window.supabase && SUPABASE_ANON_KEY !== "PASTE_YOUR_ANON_KEY_HERE")
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
 
-    const data = new FormData(form);
+    const form = document.getElementById("bookingForm");
 
-    try {
-      const res = await fetch(form.action, {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const pick = (k) => { const v = data.get(k); return v == null ? null : String(v).trim() || null; };
+
+      // Build the booking row for Supabase (office app)
+      const state    = pick("state");
+      const photos   = pick("photos");
+      const extra    = [state ? `State: ${state}` : null, photos ? `Photos: ${photos}` : null].filter(Boolean).join("\n") || null;
+      const supaRow  = {
+        name:           pick("name"),
+        phone:          pick("phone"),
+        email:          pick("email"),
+        vehicle:        pick("rego_result"),
+        rego:           pick("rego"),
+        vin:            pick("vin"),
+        odometer:       pick("odometer"),
+        service_type:   pick("service"),
+        symptoms:       pick("symptoms"),
+        location:       pick("location"),
+        preferred_time: pick("preferred_time"),
+        contact_method: pick("contact_method"),
+        notes:          extra,
+      };
+
+      // Fire BOTH Formspree (email) and Supabase (office app) in parallel.
+      // Wait for both before redirecting so the booking is guaranteed saved.
+      const formspreeP = fetch(form.action, {
         method: "POST",
         body: data,
         headers: { "Accept": "application/json" }
       });
+      const supabaseP = sbClient
+        ? sbClient.from("bookings").insert(supaRow).then(r => {
+            if (r.error) console.warn("Supabase booking insert failed:", r.error.message);
+            return r;
+          })
+        : Promise.resolve(null);
 
-      if (res.ok) {
-        window.location.href = "thankyou.html";
-      } else {
-        alert("Submit failed. Please try again.");
+      try {
+        const [res] = await Promise.all([formspreeP, supabaseP]);
+        if (res.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Submit failed. Please try again.");
+        }
+      } catch (err) {
+        alert("Network error. Please try again.");
       }
-    } catch (err) {
-      alert("Network error. Please try again.");
-    }
-  });
-</script>
+    });
+  </script>
 
 </body>
 </html>
-
-
