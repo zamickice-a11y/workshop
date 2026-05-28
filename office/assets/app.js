@@ -632,7 +632,14 @@
             <option value="refund" ${e.kind==='refund'?'selected':''}>Refund (parts returned)</option>
           </select></div>
         </div>
-        <div class="field"><label>Supplier</label><input id="e_supplier" value="${escapeHtml(e.supplier||"")}" placeholder="e.g. Repco, Bursons, Toyota"/></div>
+        <div class="field">
+          <label>Supplier</label>
+          <input id="e_supplier" value="${escapeHtml(e.supplier||"")}" placeholder="e.g. Repco, Bursons, Toyota"/>
+          <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap">
+            <button type="button" class="btn btn-ghost btn-sm" data-sup="Autopro Kilkenny">Autopro Kilkenny</button>
+            <button type="button" class="btn btn-ghost btn-sm" data-sup="Repco">Repco</button>
+          </div>
+        </div>
         <div class="grid2">
           <div class="field"><label>Receipt no.</label><input id="e_receipt" value="${escapeHtml(e.receipt_no||"")}"/></div>
           <div class="field"><label>Amount (AUD)</label><input id="e_amount" type="number" step="0.01" value="${escapeHtml(e.amount||"")}"/></div>
@@ -647,6 +654,10 @@
     document.body.appendChild(overlay);
     const close = () => overlay.remove();
     $("#e_cancel", overlay).onclick = close;
+    overlay.querySelectorAll("[data-sup]").forEach(b => b.onclick = () => {
+      $("#e_supplier", overlay).value = b.dataset.sup;
+      $("#e_supplier", overlay).focus();
+    });
     $("#e_save", overlay).onclick = async () => {
       const row = {
         date: $("#e_date",overlay).value || null,
