@@ -47,7 +47,7 @@
   const repair = {
     type: "repair",
     title: "Repair / Service Job",
-    invoiceTitle: "TAX INVOICE",
+    invoiceTitle: "INVOICE",
     header: headerFields,
     sections: [
       { legend:"Invoice line items", fields:[ { k:"items", type:"lineitems" } ] },
