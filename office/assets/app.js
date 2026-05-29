@@ -33,6 +33,41 @@
       session = s;
       if (!s) renderLogin();
     });
+    startAutoRefresh();
+  }
+
+  // ---------- auto-refresh (polling) ----------
+  // Refreshes data every 15s on dashboard/bookings views so new bookings
+  // and jobs appear without a manual reload. Skips when tab is hidden.
+  let _refreshing = false;
+  async function autoRefresh(force) {
+    if (!session || _refreshing) return;
+    if (!force && document.visibilityState !== "visible") return;
+    if (state.view !== "dashboard" && state.view !== "bookings") return; // don't disrupt editor/money
+    _refreshing = true;
+    try {
+      const prevNew = (state.bookings || []).filter(b => b.status === "new").length;
+      if (state.view === "dashboard") {
+        await Promise.all([loadJobs(), loadExpenses(), loadBookings()]);
+        renderMoneyBar(); renderBookingsBar();   // loadJobs already re-renders the list
+      } else if (state.view === "bookings") {
+        await loadBookings();
+        renderBookingsList();
+      }
+      const nowNew = (state.bookings || []).filter(b => b.status === "new").length;
+      if (nowNew > prevNew) {
+        const n = nowNew - prevNew;
+        toast(`🔔 ${n} new booking${n > 1 ? "s" : ""} received`, "ok");
+      }
+    } catch (e) { /* network blip — ignore, try again next tick */ }
+    _refreshing = false;
+  }
+  function startAutoRefresh() {
+    setInterval(() => autoRefresh(false), 15000);   // every 15 seconds
+    // When the user returns to the tab, refresh immediately
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") autoRefresh(true);
+    });
   }
 
   // ---------- config needed screen ----------
