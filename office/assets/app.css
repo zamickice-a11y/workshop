@@ -3,8 +3,8 @@
    Brand: dark UI + orange accent (matches the website)
    ===================================================================== */
 :root{
-  --bg:#ffffff; --panel:#1f1f1f; --panel2:#262626;
-  --line:#353535; --text:#f0f0f0; --muted:#a8a8a8;
+  --bg:#ffffff; --panel:#ffffff; --panel2:#ffffff;
+  --line:#ffffff; --text:#000000; --muted:#a8a8a8;
   --brand:#ff5e00; --ok:#34c759; --warn:#ffb020; --bad:#ff453a;
   --radius:12px;
 }
