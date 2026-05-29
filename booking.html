@@ -378,7 +378,7 @@
     const SUPABASE_URL      = "https://qftomcqjxfvfeukaomyc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmdG9tY3FqeGZ2ZmV1a2FvbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NzM1ODcsImV4cCI6MjA5NTU0OTU4N30.LdGdWONhMGvVQ9omuomlDg45d8BIr_8z9QYbnrWGhS8";   // legacy anon key eyJhbGci...
 
-    const sbClient = (window.supabase && SUPABASE_ANON_KEY !== "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmdG9tY3FqeGZ2ZmV1a2FvbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NzM1ODcsImV4cCI6MjA5NTU0OTU4N30.LdGdWONhMGvVQ9omuomlDg45d8BIr_8z9QYbnrWGhS8")
+    const sbClient = window.supabase
       ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
       : null;
 
