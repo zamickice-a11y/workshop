@@ -1110,7 +1110,7 @@
       </div>
       <div class="row" style="margin-top:10px;gap:8px;flex-wrap:wrap">
         <button class="btn btn-sm" id="addManual">+ Add booking (phone/SMS)</button>
-        <button class="btn btn-ghost btn-sm" id="goSchedule">📅 Schedule view</button>
+        <button class="btn btn-ghost btn-sm" id="goSchedule"> Schedule view</button>
       </div>
       <div class="tabs" id="bTabs" style="margin-top:14px;flex-wrap:wrap">
         ${BSTATUS.map(s => {
@@ -1142,7 +1142,7 @@
         <div class="main">
           <div class="t">${escapeHtml(b.name || "(no name)")}${b.phone ? ' · '+escapeHtml(b.phone) : ''}</div>
           <div class="s">${escapeHtml(b.vehicle || "")}${b.rego?(' · '+escapeHtml(b.rego)):''} · ${new Date(b.created_at).toLocaleString("en-AU", {dateStyle:"short", timeStyle:"short"})}</div>
-          ${b.scheduled_date ? `<div class="s" style="margin-top:3px;color:#4aa3df;font-weight:700">📅 ${new Date(b.scheduled_date).toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"})} · ${fmtTime12(b.scheduled_time)}</div>` : ''}
+          ${b.scheduled_date ? `<div class="s" style="margin-top:3px;color:#4aa3df;font-weight:700"> ${new Date(b.scheduled_date).toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"})} · ${fmtTime12(b.scheduled_time)}</div>` : ''}
           ${b.symptoms ? `<div class="s" style="margin-top:3px;color:var(--text);opacity:.85">"${escapeHtml((b.symptoms||"").slice(0,90))}${b.symptoms.length>90?'…':''}"</div>` : ''}
         </div>
         <div class="amt" style="font-size:18px">→</div>
@@ -1173,9 +1173,9 @@
         ${fmt("Preferred time", b.preferred_time)}
         ${fmt("Contact via", b.contact_method)}
         ${b.job_id ? `<div class="hint" style="color:var(--ok);margin-top:6px">✓ Already converted to a job</div>` : ""}
-        ${b.scheduled_date ? `<div class="hint" style="color:#4aa3df;margin-top:6px">📅 Scheduled: ${new Date(b.scheduled_date).toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"})} at ${fmtTime12(b.scheduled_time)} (${Number(b.duration_min||DEFAULT_DURATION)} min)</div>` : ""}
+        ${b.scheduled_date ? `<div class="hint" style="color:#4aa3df;margin-top:6px"> Scheduled: ${new Date(b.scheduled_date).toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"})} at ${fmtTime12(b.scheduled_time)} (${Number(b.duration_min||DEFAULT_DURATION)} min)</div>` : ""}
         <div class="row" style="gap:8px;margin-top:16px;flex-wrap:wrap">
-          <button class="btn" id="b_schedule">📅 ${b.scheduled_date ? "Reschedule" : "Schedule"}</button>
+          <button class="btn" id="b_schedule"> ${b.scheduled_date ? "Reschedule" : "Schedule"}</button>
           ${b.status!=="converted" ? `<button class="btn btn-ghost" id="b_repair">+ Create Repair</button>
           <button class="btn btn-ghost" id="b_ppi">+ Create Inspection</button>` : ""}
         </div>
