@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SIAM AUTOWORKS — Office</title>
+  <meta name="description" content="SIAM AUTOWORKS back-office: invoices, job sheets and pre-purchase inspection reports." />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+  <!-- ============ APP ROOT ============ -->
+  <div id="app">
+    <div class="boot">Loading…</div>
+  </div>
+
+  <!-- Hidden print mount: document HTML is rendered here for print/PDF -->
+  <div id="printMount" aria-hidden="true"></div>
+
+  <!-- ============ Libraries (CDN) ============ -->
+  <!-- Supabase JS v2 (auth + database) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <!-- docx.js (Word generation, browser UMD build) -->
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+  <!-- FileSaver (download blobs) -->
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+  <!-- ============ App code ============ -->
+  <script src="config.js"></script>
+  <script src="assets/forms.js"></script>
+  <script src="assets/docgen.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
